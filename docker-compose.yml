@@ -1,0 +1,7 @@
+postfix:
+ image: postfix
+ container_name : postfix
+ hostname: postfix
+ env_file:
+ - ./config/config.env
+ restart: always
