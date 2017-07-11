@@ -24,6 +24,8 @@ echo -e "# SERVEUR LDAP\nLDAP_SERVERS: ldap://$LDAP_SERVER:$LDAP_PORT\n\n#DOMAIN
 
 #File /etc/default/saslautd
 sed -i -e "s/\START=no/\START=yes/g" /etc/default/saslauthd
+sed -i -e '/^MECHANISMS*/s/MECHANISMS="pam"/MECHANISMS="ldap"/' /etc/default/saslauthd
+sed -i -e '/\MECHANISMS="ldap"/aPARAMS="-O /etc/saslauthd.conf"' /etc/default/saslauthd
 
 #Restart service
 service saslauthd stop
